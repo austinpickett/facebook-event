@@ -1,0 +1,239 @@
+/**
+ * Core SASS
+ */
+
+@import C:/www/Abases/classes.sass
+
+// -----------------------------------------------
+
+/**
+ * Variables
+ */
+$pad: 15px
+$maxWidth: 960px + ($pad * 2)
+
+// Fonts
+$font: Arial, sans-serif
+
+// Colours
+$default: #222
+
+// -----------------------------------------------
+
+/**
+ * Keyframes
+ */
+
+// -----------------------------------------------
+
+/**
+ * Site-specific mixins
+ */
+
+// -----------------------------------------------
+
+/**
+ * General
+ */
+body
+	color: $default
+	font: rem(13)/1.5 $font
+	margin: 0
+	padding: 0
+
+	p, ul, ol, dl
+		font: rem(13)/1.5 $font
+
+a
+	color: $default
+	text-decoration: none
+
+	&:hover
+		color: lighten($default, 10)
+
+.wrapper
+	@include clearfix
+	max-width: $maxWidth
+	margin: 0 auto
+	padding: 0 $pad
+
+@include colorSelection
+	color: #FFF
+	background: #E74C3C
+
+// -----------------------------------------------
+
+/**
+ * Global styles
+ */
+
+// Buttons
+[class*="button-"]
+
+// Social
+li[class*="social-"]
+
+// -----------------------------------------------
+
+/**
+ * Header
+ */
+#header
+	// Main nav styles
+	@include wpMenu
+		//
+
+		@include wpActives
+			//
+
+		// Dropdown
+		&.menu-item-has-children
+			> a
+
+			&.over
+				> a
+
+				> ul
+					display: block
+
+		> ul
+			display: none
+			position: absolute
+			top: 100%
+			left: 0
+			padding: 7px
+			background: #FFF
+
+			li
+				display: block
+
+				a
+					display: block
+
+// Mobile dropdown link
+#mobile-dd-link
+	top: 1px
+	border: 1px solid $default
+	padding: 5px 8px
+
+.pointerevents
+	// Mobile dropdown itself
+	#mobile-dd
+		display: block
+		z-index: 501
+		@include cover(fixed)
+		left: auto
+		width: 200px
+		padding: 10px
+		text-align: center
+		@include transform(translateX(200px))
+		background: #111
+
+		&.open
+			@include transform(translateX(0))
+
+		@include wpMenu
+			a
+				display: block
+				color: #FFF
+				color: rgba(#FFF, .85)
+				font: rem(15)/rem(21) $font
+				@include textShadow(0 1px rgba(#000, .2))
+				padding: 7px 10px
+
+	#mobile-dd, #container
+		@include transition(all .5s $easeOutSine)
+
+	// Site container
+	#container
+		&:after
+			@include opacity(0)
+			pointer-events: none
+			z-index: 501
+			content: ''
+			display: block
+			@include cover
+			@include transition(opacity .7s ease)
+			background: rgba(#000, .8)
+
+		&.open
+			@include transform(translateX(-200px))
+
+			&:after
+				@include opacity(1)
+
+.no-pointerevents #mobile-dd
+	display: none !important
+
+// -----------------------------------------------
+
+/**
+ * Masthead
+ */
+#masthead
+
+// -----------------------------------------------
+
+/**
+ * Footer
+ */
+#footer
+
+// -----------------------------------------------
+
+/**
+ * Slideshow
+ */
+[ng-slideshow]
+	$slideHeight: 300px
+	height: $slideHeight
+
+	.slide
+		z-index: 0
+		@include cover
+		@include opacity(0)
+		@include transition(opacity .75s ease)
+
+		&.active
+			z-index: 1
+			@include opacity(1)
+
+	// Pager icons
+	nav
+		position: absolute
+		left: 10px
+		bottom: 10px
+
+// -----------------------------------------------
+
+/**
+ * Containers
+ */
+#content
+	h1,h2,h3,h4,h5,h6
+		margin: 25px 0 10px
+		padding: 0
+
+		&:first-child
+			margin-top: 0
+
+	.alignleft
+		float: left
+		margin: 0 15px 5px 0
+
+	.alignright
+		float: right
+		margin: 0 0 5px 15px
+
+// -----------------------------------------------
+
+/** 
+ * Table Styles
+ */
+
+table
+	margin: 0 auto
+	tr
+		text-align: left
+		td.date, td.time
+			width: 200px
